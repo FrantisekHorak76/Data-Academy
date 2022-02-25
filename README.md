@@ -1,2 +1,2 @@
 # Data-Academy
-Data analyse of product price and payroll with SQL
+1) Data analyse of product price and payroll with SQL
