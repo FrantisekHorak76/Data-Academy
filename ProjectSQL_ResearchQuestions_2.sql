@@ -1,7 +1,7 @@
-/* Vytvoøení pomocnıch tabulek pro vıslednı vıpoèet
- * Tabulka avg_milk = prùmìrná cena mléka v letech 2006, 2018
- * Tabulka avg_bread = prùmìrná cena chleba v letech 2006, 2018
- * Tabulka avg_payroll = prùmìrnı plat v letech 2006, 2018 */
+/* VytvoÅ™enÃ­ pomocnÃ½ch tabulek pro vÃ½slednÃ½ vÃ½poÄet
+ * Tabulka avg_milk = prÅ¯mÄ›rnÃ¡ cena mlÃ©ka v letech 2006, 2018
+ * Tabulka avg_bread = prÅ¯mÄ›rnÃ¡ cena chleba v letech 2006, 2018
+ * Tabulka avg_payroll = prÅ¯mÄ›rnÃ½ plat v letech 2006, 2018 */
 
 WITH avg_milk AS (
 	SELECT 
@@ -9,7 +9,7 @@ WITH avg_milk AS (
 		average AS avg_price_milk
 	FROM t_frantisek_horak_projekt_sql_primary_final tpf
 	WHERE 
-		name = 'Mléko polotuèné pasterované' AND 
+		name = 'MlÃ©ko polotuÃ¨nÃ© pasterovanÃ©' AND 
 		(year_value = '2006' OR year_value = '2018')
 ),
 	avg_bread AS (
@@ -18,7 +18,7 @@ WITH avg_milk AS (
 			average AS avg_price_bread
 		FROM t_frantisek_horak_projekt_sql_primary_final tpf
 		WHERE 
-			name = 'Chléb konzumní kmínovı' AND 
+			name = 'ChlÃ©b konzumnÃ­ kmÃ­novÃ½' AND 
 			(year_value = '2006' OR year_value = '2018')
 ),
 	avg_payroll AS (
@@ -40,7 +40,7 @@ WITH avg_milk AS (
 		    code IS NOT NULL
 		GROUP BY year_value
 )
-/* Vısledná odpovìï na vızkumnou otázku ohlednì moného mnoství koupì mléka a chleba na základì prùmìrného platu ze všech odvvìtví v letech 2006, 2018*/
+/* VÃ½slednÃ¡ odpovÄ›Ä na vÃ½zkumnou otÃ¡zku ohlednÄ› moÅ¾nÃ©ho mnoÅ¾stvÃ­ koupÄ› mlÃ©ka a chleba na zÃ¡kladÄ› prÅ¯mÄ›rnÃ©ho platu ze vÅ¡ech odvÄ›tvÃ­ v letech 2006, 2018*/
 SELECT 
 	am.year_value ,
 	am.avg_price_milk ,
