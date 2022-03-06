@@ -1,5 +1,5 @@
-/* Vytvoøení pohledu, ve kterém lze najít srovnání mezd v sledovaném období v jednotlivıch odvìtvích s tím, zda mzda v kadém roce roste èi nikoliv
- * Je vyuit ve vıslednıch pøíkazech SELECT*/
+/* VytvoÅ™enÃ­ pohledu, ve kterÃ©m lze najÃ­t srovnÃ¡nÃ­ mezd v sledovanÃ©m obdobÃ­ v jednotlivÃ½ch odvÄ›tvÃ­ch s tÃ­m, zda mzda v kaÅ¾dÃ©m roce roste Äi nikoliv
+ * Je vyuÅ¾it ve vÃ½slednÃ½ch pÅ™Ã­kazech SELECT*/
 
 CREATE OR REPLACE VIEW v_payroll_comparison AS
 	SELECT 
@@ -18,16 +18,14 @@ CREATE OR REPLACE VIEW v_payroll_comparison AS
 		code
 	ORDER BY code, year_value;
 
-/* Vısledná odvìtví, ve kterıch po sledované období kadı rok plat nerostl	
-   Byl vyøazen rok 2006, kterı je poèáteèní a dìlal by potí ve správném 
-   vıpoètu díky funkci LAG, která nerozlišuje v pouitém pohledu jednotlivá odvìtví. */
+/* VÃ½slednÃ¡ odvÄ›tvÃ­, ve kterÃ½ch po sledovanÃ© obdobÃ­ kaÅ¾dÃ½ rok plat nerostl */
 SELECT  
 	DISTINCT vpc.name, vpc.code 
 FROM v_payroll_comparison vpc 
 WHERE 
 	`condition` = 'declining' ;
 
-/* Vısledná odvìtví, ve kterıch po sledované období kadı rok plat rostl*/
+/* VÃ½slednÃ¡ odvÄ›tvÃ­, ve kterÃ½ch po sledovanÃ© obdobÃ­ kaÅ¾dÃ½ rok plat rostl*/
 SELECT 
 	*
 FROM (
