@@ -1,6 +1,6 @@
-/*Vytvoøení pomocnıch tabulek pro vytvoøení odpovìdi na otázku è.5
- *Tabulka gdp_cze = HDP ÈR ve sledovaném období (2006-2018)
- *Tabulka avg_payroll_product_gdp_comparison = zde je vidìt meziroèní rùst, nebo pokles prùmìrné ceny potravin, mezd a HDP */
+/*VytvoÅ™enÃ­ pomocnÃ½ch tabulek pro vytvoÅ™enÃ­ odpovÄ›dÃ­ na otÃ¡zku Ä.5
+ *Tabulka gdp_cze = HDP ÄŒR ve sledovanÃ©m obdobÃ­ (2006-2018)
+ *Tabulka avg_payroll_product_gdp_comparison = zde je vidÄ›t meziroÄnÃ­ rÅ¯st, nebo pokles prÅ¯mÄ›rnÃ© ceny potravin, mezd a HDP */
 WITH gdp_cze AS (
 	SELECT 
 		`year` ,
@@ -18,7 +18,7 @@ WITH gdp_cze AS (
 			vapp.avg_payroll  - LAG(vapp.avg_payroll) OVER (ORDER BY vapp.year_value) AS different_avg_payroll,
 			gc.GDP ,
 			gc.GDP - LAG(gc.GDP) OVER (ORDER BY vapp.year_value) AS different_GDP	
-		FROM v_avg_payroll_product vapp  -- Pohled, kterı je vytvoøen pøi øešení otázky è.4
+		FROM v_avg_payroll_product vapp  -- Pohled, kterÃ½ je vytvoÃ¸en pÃ¸i Ã¸eÅ¡enÃ­ otÃ¡zky Ã¨.4
 		JOIN gdp_cze gc 
 			ON vapp.year_value = gc.`year` 
 		GROUP BY 
@@ -26,7 +26,7 @@ WITH gdp_cze AS (
 			vapp.avg_product ,
 			gc.GDP
 )
--- Vytvoøení vısledné tabulky na otázku è. 5.
+-- VytvoÅ™enÃ­ vÃ½slednÃ© tabulky na otÃ¡zku Ä. 5.
 SELECT 
  *,
  CASE 
