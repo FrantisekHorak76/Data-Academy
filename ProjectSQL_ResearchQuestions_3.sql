@@ -1,6 +1,6 @@
-/* Vytvoøení pomocnıch tabulek pro vıslednı vıpoèet
- * Tabulka avg_product_difference = meziroèní procentuální rozdílu jednotlivıch potravin ve sledovaném období
- * Tabulka avg_percentage = seøazení jednotlivıch potravin podle prùmìrného meziroèního procentuálního nárùstu, nebo poklesu ceny za celé období.*/
+/* VytvoÅ™enÃ­ pomocnÃ½ch tabulek pro vÃ½slednÃ½ vÃ½poÄet
+ * Tabulka avg_product_difference = meziroÄnÃ­ procentuÃ¡lnÃ­ rozdÃ­lu jednotlivÃ½ch potravin ve sledovanÃ©m obdobÃ­
+ * Tabulka avg_percentage = seÅ™azenÃ­ jednotlivÃ½ch potravin podle prÅ¯mÄ›rnÃ©ho meziroÄnÃ­ho procentuÃ¡lnÃ­ho nÃ¡rÅ¯stu, nebo poklesu ceny za celÃ© obdobÃ­.*/
 
 WITH avg_product_difference AS (
 	SELECT 
@@ -25,7 +25,7 @@ WITH avg_product_difference AS (
 	GROUP BY  name
 	ORDER BY avg_year_percentage_increase
 )	
-/* Vytvoøení vısledné odpovìdi na otázku è.3 */
+/* VytvoÅ™enÃ­ vÃ½slednÃ© odpovÄ›di na otÃ¡zku Ä.3 */
 SELECT 
 	*
 FROM avg_percentage 
