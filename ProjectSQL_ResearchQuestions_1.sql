@@ -1,4 +1,5 @@
-/* Vytvoøení pohledu, ve kterém lze najít srovnání mezd v sledovaném období v jednotlivých odvìtvích s tím, zda mzda v každém roce roste èi nikoliv*/
+/* Vytvoøení pohledu, ve kterém lze najít srovnání mezd v sledovaném období v jednotlivých odvìtvích s tím, zda mzda v každém roce roste èi nikoliv
+ * Je využit ve výsledných pøíkazech SELECT*/
 
 CREATE OR REPLACE VIEW v_payroll_comparison AS
 	SELECT 
@@ -6,8 +7,8 @@ CREATE OR REPLACE VIEW v_payroll_comparison AS
 		name ,
 		average ,
 		code ,
-		average - LAG(average) OVER (ORDER BY  code, year_value) AS "difference",
-		IF (average - LAG(average) OVER (ORDER BY code, year_value)< 0, "declining","grows") AS `condition`
+		average - LAG(average) OVER (PARTITION BY code ORDER BY  code, year_value) AS "difference",
+		IF (average - LAG(average) OVER (PARTITION BY code ORDER BY  code, year_value)< 0, "declining","grows") AS `condition`
 	FROM t_frantisek_horak_projekt_sql_primary_final tfhpspf 
 	WHERE code IS NOT NULL
 	GROUP BY 
@@ -24,8 +25,7 @@ SELECT
 	DISTINCT vpc.name, vpc.code 
 FROM v_payroll_comparison vpc 
 WHERE 
-	`condition` = 'declining' AND 
-	vpc.year_value != '2006';
+	`condition` = 'declining' ;
 
 /* Výsledná odvìtví, ve kterých po sledované období každý rok plat rostl*/
 SELECT 
@@ -39,6 +39,5 @@ FROM (
 		DISTINCT vpc.name, vpc.code 
 	FROM v_payroll_comparison vpc 
 	WHERE 
-		`condition` = 'declining' AND 
-		vpc.year_value != '2006'
+		`condition` = 'declining' 
 	) AS grows_over_the_period;
